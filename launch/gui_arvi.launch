@@ -1,0 +1,13 @@
+<launch>
+  <param name = "use_gui" value = "True" />
+
+  <!-- JOINT -->
+  <!-- <node name = "joint_state_publisher" pkg = "joint_state_publisher" type = "joint_state_publisher">
+    <remap from = "joint_states" to = "/maestro_node/command/joint_states" />
+  </node> -->
+  <node name = "robot_state_publisher" pkg = "robot_state_publisher" type = "state_publisher" />
+
+  <!-- RVIZ -->
+  <node pkg="rviz" type="rviz" name="rviz" args="-d $(find arvi_robot)/arvi.rviz"/>
+
+</launch>

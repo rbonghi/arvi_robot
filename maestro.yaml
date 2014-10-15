@@ -1,0 +1,6 @@
+servo:
+  channel: {'0': 0, '1': 1, '2': 2}
+  length: 3
+  name: {'0': Left_shovel, '1': Right_shovel, '2': Tilt}
+tf: {joint_states: joint_states}
+timer: {rate: 5}

@@ -1,0 +1,18 @@
+<launch>
+  <param name="robot_description" textfile="$(find explorer_robot)/explorer.dae" />
+
+  <param name="use_gui" value="true" />
+  <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher" respawn="true" output="screen" />
+
+  <!-- Run TF publisher -->
+  <node name="tf2_web_republisher" pkg="tf2_web_republisher" type="tf2_web_republisher" output="screen"/>
+
+  <!-- Run robot_pose_publisher -->
+  <node name="robot_pose_publisher" pkg="robot_pose_publisher" type="robot_pose_publisher"/>
+
+  <!-- ROSBRIDGE -->
+  <include file="$(find rosbridge_server)/launch/rosbridge_websocket.launch" >
+      <arg name="port" value="9090"/>
+  </include>
+
+</launch>

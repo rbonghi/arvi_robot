@@ -1,0 +1,182 @@
+<?xml version="1.0"?>
+<robot name="ARVI">
+    <link name="base_link">
+        <visual>
+            <geometry>
+                <box size = "0.215 0.145 0.0505" />
+            </geometry>
+            <material name="yellow">
+                <color rgba="1 1 0 0.5"/>
+            </material>
+        </visual>
+    </link>
+
+  <link name="Left_track_link">
+    <visual>
+      <geometry>
+         <box size = "0.275 0.05 0.07" />
+      </geometry>
+      <material name="black"/>
+    </visual>
+  </link>
+
+  <joint name="Left_track" type="fixed">
+    <limit effort = "10" lower = "-0.22" upper = "1.15" velocity = "10" />
+    <axis xyz="-1 0 0"/>
+    <parent link="base_link"/>
+    <child link="Left_track_link"/>
+    <origin rpy="0 0 0" xyz="-0.03 0.105 0"/>
+  </joint>
+
+  <link name="Right_track_link">
+    <visual>
+      <geometry>
+         <box size = "0.275 0.05 0.07" />
+      </geometry>
+      <material name="black"/>
+    </visual>
+  </link>
+
+  <joint name="Right_track" type="fixed">
+    <limit effort = "10" lower = "-0.22" upper = "1.15" velocity = "10" />
+    <axis xyz="1 0 0"/>
+    <parent link="base_link"/>
+    <child link="Right_track_link"/>
+    <origin rpy="0 0 0" xyz="-0.03 -0.105 0"/>
+  </joint>
+
+  <link name="base_video_link">
+    <visual>
+      <geometry>
+         <box size = "0.01 0.02 0.01" />
+      </geometry>
+            <material name="blue">
+                <color rgba="0 0 1 1"/>
+            </material>
+    </visual>
+  </link>
+
+  <joint name="base_pan_tilt" type="fixed">
+    <axis xyz="1 0 0"/>
+    <parent link="base_link"/>
+    <child link="base_video_link"/>
+    <origin rpy="0 0 0" xyz="0.1 0 -0.02"/>
+  </joint>
+
+  <link name="Pan_link">
+    <visual>
+      <geometry>
+         <box size = "0.02 0.02 0.01" />
+      </geometry>
+            <material name="blue">
+                <color rgba="0 0 1 1"/>
+            </material>
+    </visual>
+  </link>
+
+  <joint name="Pan" type="fixed">
+    <limit effort = "10" lower = "-1.57" upper = "1.57" velocity = "10" />
+    <axis xyz="0 0 -1"/>
+    <parent link="base_video_link"/>
+    <child link="Pan_link"/>
+    <origin rpy="0 0 0" xyz="0.0 0 0.0"/>
+  </joint>
+
+  <link name="Tilt_link">
+    <visual>
+      <geometry>
+         <box size = "0.02 0.02 0.01" />
+      </geometry>
+            <material name="blue">
+                <color rgba="0 0 1 1"/>
+            </material>
+    </visual>
+  </link>
+
+  <joint name="Tilt" type="revolute">
+    <limit effort = "10" lower = "-1.57" upper = "1.57" velocity = "10" />
+    <axis xyz="0 -1 0"/>
+    <parent link="Pan_link"/>
+    <child link="Tilt_link"/>
+    <origin rpy="0 0 0" xyz="0.0 0 0.0"/>
+  </joint>
+
+  <link name="Left_wheel">
+    <visual>
+      <geometry>
+        <cylinder length=".05" radius="0.015"/>
+      </geometry>
+            <material name="yellow_full">
+                <color rgba="1 1 0 1"/>
+            </material>
+    </visual>
+  </link>
+
+  <joint name="Left" type="continuous">
+    <axis xyz="0 0 1"/>
+    <parent link="Left_track_link"/>
+    <child link="Left_wheel"/>
+    <origin rpy="1.57075 0 0" xyz="-0.11 -0.05 0"/>
+    <limit effort="100" velocity="100"/>
+    <joint_properties damping="0.0" friction="0.0"/>
+  </joint>
+  
+  <link name="Right_wheel">
+    <visual>
+      <geometry>
+        <cylinder length=".05" radius="0.015"/>
+      </geometry>
+            <material name="yellow_full">
+                <color rgba="1 1 0 1"/>
+            </material>
+    </visual>
+  </link>
+
+  <joint name="Right" type="continuous">
+    <axis xyz="0 0 1"/>
+    <parent link="Right_track_link"/>
+    <child link="Right_wheel"/>
+    <origin rpy="1.57075 0 0" xyz="-0.11 0.05 0"/>
+    <limit effort="100" velocity="100"/>
+    <joint_properties damping="0.0" friction="0.0"/>
+  </joint>
+
+  <link name="Left_shovel_link">
+    <visual>
+      <geometry>
+        <box size = "0.09 0.02 0.01" />
+      </geometry>
+            <material name="white">
+                <color rgba="1 1 1 1"/>
+            </material>
+    </visual>
+  </link>
+
+  <joint name="Left_shovel" type="revolute">
+    <limit effort = "10" lower = "-1.57" upper = "1.57" velocity = "10" />
+    <axis xyz="-1 0 0"/>
+    <parent link="base_link"/>
+    <child link="Left_shovel_link"/>
+    <origin rpy="0 0 0" xyz="0.04 0.04 -0.035"/>
+  </joint>
+
+  <link name="Right_shovel_link">
+    <visual>
+      <geometry>
+        <box size = "0.09 0.02 0.01" />
+      </geometry>
+            <material name="white">
+                <color rgba="1 1 1 1"/>
+            </material>
+    </visual>
+  </link>
+
+  <joint name="Right_shovel" type="revolute">
+    <limit effort = "10" lower = "-1.57" upper = "1.57" velocity = "10" />
+    <axis xyz="-1 0 0"/>
+    <parent link="base_link"/>
+    <child link="Right_shovel_link"/>
+    <origin rpy="0 0 0" xyz="0.04 -0.04 -0.035"/>
+  </joint>
+
+</robot>

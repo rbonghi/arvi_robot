@@ -1,0 +1,8 @@
+<launch>
+  <param name="robot_description" textfile="$(find explorer_robot)/explorer.urdf" />
+  
+  <group ns="robot">
+     <node name="bridge_robot" pkg="serial_bridge" type="serial_bridge_node" args="/dev/ttyUSB0" />
+     <!--<rosparam command="load" file="$(find explorer_robot)/explorer.yaml"/>-->
+  </group>
+</launch>

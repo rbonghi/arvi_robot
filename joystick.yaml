@@ -1,0 +1,13 @@
+reset_pose: 9
+steering:
+  axis: {x: 1, y: 0}
+  scale: {x: 0.2, y: 2.5}
+
+increase_angle_tilt: 5
+decrease_angle_tilt: 4
+
+increase_angle_shovels: 7
+decrease_angle_shovels: 6
+full_open_shovels: 0
+open_shovels: 1
+close_shovels: 2
