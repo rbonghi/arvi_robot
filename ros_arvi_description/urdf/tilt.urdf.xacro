@@ -1,0 +1,109 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://ros.org/wiki/xacro" name="tilt">	
+  
+  <xacro:property name="path_tilt" value="package://ros_arvi_description/meshes/tilt" />
+
+  <xacro:macro name="tilt" params="parent">
+  <link
+    name="tilt_Link">
+    <inertial>
+      <origin
+        xyz="-0.0157655142506208 0.00269108933594074 0.0104834946686473"
+        rpy="0 0 0" />
+      <mass
+        value="0.00395762421788374" />
+      <inertia
+        ixx="3.11394356095352E-07"
+        ixy="-1.60136481410169E-08"
+        ixz="-6.05473014521421E-08"
+        iyy="8.28558953992694E-07"
+        iyz="1.71477669371034E-08"
+        izz="7.64572893063567E-07" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="${path_tilt}/tilt_Link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="${path_tilt}/tilt_Link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="tilt" type="revolute">
+    <origin xyz="0.227255888156922 0.016275 0.02745" rpy="1.5707963267949 3.80168975285532E-18 1.5707963267949" />
+    <parent link="base_link" />
+    <child link="tilt_Link" />
+    <axis xyz="-1 0 0" />
+    <limit effort="1000.0" lower="-1.62" upper="0.70" velocity="0.5"/>
+  </joint>
+  <link
+    name="tilt_camera_Link">
+    <inertial>
+      <origin
+        xyz="0.000123008052252407 0.0008336846818938 -0.00313426548263337"
+        rpy="0 0 0" />
+      <mass
+        value="0.00105087632584209" />
+      <inertia
+        ixx="2.67148422808954E-08"
+        ixy="1.25769695870242E-09"
+        ixz="-4.15099592310275E-10"
+        iyy="6.76666978392474E-08"
+        iyz="-6.95825055902308E-09"
+        izz="8.8134233748766E-08" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="${path_tilt}/tilt_camera_Link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.501960784313725 0.501960784313725 0.501960784313725 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="${path_tilt}/tilt_camera_Link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="tilt_camera"
+    type="fixed">
+    <origin
+      xyz="-0.017 0.00278887591483056 0.0227768450653658"
+      rpy="-1.94994011102897E-32 -2.82110555534505E-16 7.29214044453627E-17" />
+    <parent
+      link="tilt_Link" />
+    <child
+      link="tilt_camera_Link" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+  </xacro:macro>
+
+</robot>

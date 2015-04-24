@@ -1,0 +1,128 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://ros.org/wiki/xacro" name="blades">	
+  
+  <xacro:property name="path_blades" value="package://ros_arvi_description/meshes/blades" />
+
+  <xacro:macro name="blades" params="parent">
+  <link
+    name="left_blade_Link">
+    <inertial>
+      <origin
+        xyz="-0.0524460036994544 -0.00634707488539979 -0.00635305318759181"
+        rpy="0 0 0" />
+      <mass
+        value="0.0160848223753835" />
+      <inertia
+        ixx="4.07890782236007E-06"
+        ixy="8.22856801811282E-07"
+        ixz="-1.96559350704796E-07"
+        iyy="2.24198045821898E-05"
+        iyz="-9.76856420930313E-07"
+        izz="2.22113568844227E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="${path_blades}/left_blade_Link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+<xacro:if value="$(arg plate_enabled)">
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="${path_blades}/left_blade_Link.STL" />
+      </geometry>
+    </collision>
+</xacro:if>
+  </link>
+<xacro:if value="$(arg plate_enabled)">
+  <joint name="left_blade" type="revolute">
+    <origin xyz="0.102607888156922 0.0389999999999999 0.019" rpy="1.5707963267949 0 ${M_PI}" />
+    <parent link="base_link" />
+    <child link="left_blade_Link" />
+    <axis xyz="-1 0 0" />
+    <limit effort="1000.0" lower="-0.77" upper="0.57" velocity="0.5"/>
+  </joint>
+</xacro:if>
+<xacro:unless value="$(arg plate_enabled)">
+  <joint name="left_blade" type="fixed">
+    <origin xyz="0.102607888156922 0.0389999999999999 0.019" rpy="2.3 0 ${M_PI}" />
+    <parent link="base_link" />
+    <child link="left_blade_Link" />
+    <axis xyz="-1 0 0" />
+  </joint>
+</xacro:unless>
+  <link
+    name="right_blade_Link">
+    <inertial>
+      <origin
+        xyz="-0.0524009763915151 -0.00634136409073486 0.00636192208085583"
+        rpy="0 0 0" />
+      <mass
+        value="0.0160735558112038" />
+      <inertia
+        ixx="4.07630448868992E-06"
+        ixy="8.16834866603572E-07"
+        ixz="1.87135979074293E-07"
+        iyy="2.23698058551917E-05"
+        iyz="9.75669233314816E-07"
+        izz="2.21623475495057E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="${path_blades}/right_blade_Link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+<xacro:if value="$(arg plate_enabled)">
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="${path_blades}/right_blade_Link.STL" />
+      </geometry>
+    </collision>
+</xacro:if>
+  </link>
+<xacro:if value="$(arg plate_enabled)">
+  <joint name="right_blade" type="revolute">
+    <origin xyz="0.102607888156922 -0.039 0.019" rpy="1.5707963267949 0 3.14159265358979" />
+    <parent link="base_link" />
+    <child link="right_blade_Link" />
+    <axis xyz="-1 0 0" />
+    <limit effort="1000.0" lower="-0.57" upper="0.77" velocity="0.5"/>
+  </joint>
+</xacro:if>
+<xacro:unless value="$(arg plate_enabled)">
+  <joint name="right_blade" type="fixed">
+    <origin xyz="0.102607888156922 -0.039 0.019" rpy="0.7 0 ${M_PI}" />
+    <parent link="base_link" />
+    <child link="right_blade_Link" />
+    <axis xyz="-1 0 0" />
+  </joint>
+</xacro:unless>
+
+  </xacro:macro>
+
+</robot>

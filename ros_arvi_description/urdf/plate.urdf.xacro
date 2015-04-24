@@ -1,0 +1,120 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://ros.org/wiki/xacro" name="plate">	
+  
+  <xacro:property name="path_plate" value="package://ros_arvi_description/meshes/plate" />
+
+  <xacro:macro name="plate" params="parent">
+  <link
+    name="plate_Link">
+    <inertial>
+      <origin
+        xyz="0.0495699534261409 -0.0215759649847011 0.0103856219357841"
+        rpy="0 0 0" />
+      <mass
+        value="0.0522197674434904" />
+      <inertia
+        ixx="1.9328663167686E-05"
+        ixy="8.23608920104218E-08"
+        ixz="-9.12658788671456E-07"
+        iyy="7.25831932634134E-05"
+        iyz="2.54938736857079E-08"
+        izz="5.68352884918839E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="${path_plate}/plate_Link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 0 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="${path_plate}/plate_Link.STL" />
+      </geometry>
+    </collision>
+  </link>
+<xacro:if value="$(arg plate_enabled)">
+  <joint name="plate" type="prismatic">
+    <origin xyz="0.110050888156922 0.00999999999999998 0.055" rpy="1.5707963267949 0 0" />
+    <parent link="base_link" />
+    <child link="plate_Link" />
+    <axis xyz="0 -1 0" />
+    <limit effort="1000.0" lower="0.025" upper="0" velocity="0.5"/>
+  </joint>
+</xacro:if>
+<xacro:unless value="$(arg plate_enabled)">
+  <joint name="plate" type="fixed">
+    <origin xyz="0.110050888156922 0.00999999999999998 0.055" rpy="1.5707963267949 0 0" />
+    <parent link="base_link" />
+    <child link="plate_Link" />
+    <axis xyz="0 -1 0" />
+  </joint>
+</xacro:unless>
+
+  <link
+    name="camera_plate_Link">
+    <inertial>
+      <origin
+        xyz="0.000224875395270885 0.00704957980829977 9.36190983078325E-05"
+        rpy="0 0 0" />
+      <mass
+        value="0.00251479191505215" />
+      <inertia
+        ixx="1.08234233482371E-07"
+        ixy="-2.34310609078845E-09"
+        ixz="2.06594997558858E-09"
+        iyy="1.43290319601571E-07"
+        iyz="8.71199367424452E-10"
+        izz="1.05561302257343E-07" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="${path_plate}/camera_plate_Link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0 0 0 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="${path_plate}/camera_plate_Link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="camera_plate"
+    type="fixed">
+    <origin
+      xyz="0.033 -0.0183934434008585 0.00999999999999995"
+      rpy="0 0 0" />
+    <parent
+      link="plate_Link" />
+    <child
+      link="camera_plate_Link" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+  </xacro:macro>
+
+</robot>

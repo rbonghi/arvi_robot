@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<package>
+  <name>ros_arvi_description</name>
+  <version>0.0.1</version>
+  <description>
+	This is the configuration package for the robot ARVI.
+  </description>
+
+  
+  <maintainer email="bonghi@dis.uniroma1.it">Raffaello Bonghi</maintainer>
+
+  <license>BSD</license>
+
+  <url type="repository">https://github.com/rbonghi/ros_arvi</url>
+
+  <author email="bonghi@dis.uniroma1.it">Raffaello Bonghi</author>
+
+  <buildtool_depend>catkin</buildtool_depend>
+  <build_depend>tf</build_depend>
+  <run_depend>tf</run_depend>
+
+</package>

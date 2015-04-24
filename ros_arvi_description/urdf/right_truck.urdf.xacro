@@ -1,0 +1,267 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://ros.org/wiki/xacro" name="right_truck">	
+  
+  <xacro:property name="path_right_truck" value="package://ros_arvi_description/meshes/right_truck" />
+  <xacro:property name="radius_wheel" value="0.035" />
+
+  <xacro:macro name="right_truck" params="parent">
+
+  <link name="right_truck_Link">
+    <inertial>
+      <origin xyz="0.0551672182146393 0.00999814699883795 -0.0233989941167847" rpy="0 0 0" />
+      <mass  value="0.0626213457030899" />
+      <inertia
+        ixx="3.02822277572569E-05"
+        ixy="-1.2591534358555E-06"
+        ixz="-8.0830857967205E-07"
+        iyy="0.000301643898571555"
+        iyz="-2.28001870787659E-09"
+        izz="0.000287605683918981" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="${path_right_truck}/right_truck_Link.STL" />
+      </geometry>
+      <material name="Yellow" />
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="${path_right_truck}/right_truck_Link.STL" />
+      </geometry>
+    </collision>
+  </link>
+<xacro:if value="$(arg truck_fixed)">
+  <joint name="right_truck" type="fixed">
+    <origin xyz="0.164050888156922 -0.0827 0.02425" rpy="1.5707963267949 8.1774002564028E-18 3.14159265358979" />
+    <parent link="base_link" />
+    <child link="right_truck_Link" />
+    <axis xyz="-1 0 0" />
+  </joint>
+</xacro:if>
+<xacro:unless value="$(arg truck_fixed)">
+  <joint name="right_truck" type="revolute">
+    <origin xyz="0.164050888156922 -0.0827 0.02425" rpy="1.5707963267949 8.1774002564028E-18 3.14159265358979" />
+    <parent link="base_link" />
+    <child link="right_truck_Link" />
+    <axis xyz="-1 0 0" />
+    <limit effort="1000.0" lower="-0.30" upper="0.30" velocity="0.5"/>
+  </joint>
+</xacro:unless>
+
+  <xacro:if value="$(arg simulator_enabled)">
+  <link name="right_active_sprocket_Link">
+    <inertial>
+      <origin xyz="-0.0158952836887031 4.23317145863134E-05 -4.23300251638226E-05" rpy="0 0 0" />
+      <mass value="0.0181336752977609" />
+      <inertia
+        ixx="6.05561380020159E-06"
+        ixy="3.48910628500859E-09"
+        ixz="-3.48896538279447E-09"
+        iyy="4.02731224010261E-06"
+        iyz="4.09083232163718E-09"
+        izz="4.02731187030243E-06" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 ${M_PI/2} 0" />
+        <geometry>
+            <cylinder length="0.03" radius="${radius_wheel}"/>
+        </geometry>
+      <material name="Black" />
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 ${M_PI/2} 0" />
+        <geometry>
+            <cylinder length="0.03" radius="${radius_wheel}"/>
+        </geometry>
+    </collision>
+  </link>
+  <joint name="right_active_sprocket" type="continuous">
+    <origin xyz="0.164050888156922 0.0100000000000001 ${-0.00674999999999994-0.015}" rpy="3.14159265358979 -1.5707963267949 0" />
+    <parent link="right_truck_Link" />
+    <child link="right_active_sprocket_Link" />
+    <axis xyz="-1 0 0" />
+  </joint>
+    <gazebo reference="right_active_sprocket_Link">
+      <mu1 value="1.0"/>
+      <mu2 value="1.0"/>
+      <kp value="10000000.0" />
+      <kd value="1.0" />
+      <fdir1 value="1 0 0"/>
+    </gazebo>
+
+  <link name="right_passive_sprocket_Link">
+    <inertial>
+      <origin xyz="-0.0175869916443205 -1.38659330545243E-10 1.11022302462516E-16" rpy="0 0 0" />
+      <mass value="0.0194093358554489" />
+      <inertia
+        ixx="6.01846919689728E-06"
+        ixy="4.27932917061051E-16"
+        ixz="-6.6395785422905E-15"
+        iyy="4.21841152183218E-06"
+        iyz="3.34846143745666E-20"
+        izz="4.21841144546209E-06" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 ${M_PI/2} 0" />
+        <geometry>
+            <cylinder length="0.03" radius="${radius_wheel}"/>
+        </geometry>
+      <material name="Black" />
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 ${M_PI/2} 0" />
+        <geometry>
+            <cylinder length="0.03" radius="${radius_wheel}"/>
+        </geometry>
+    </collision>
+  </link>
+  <joint name="right_passive_sprocket" type="continuous">
+    <origin xyz="-0.0440508881569224 0.01 ${-0.00550399999999997-0.015}" rpy="3.14159265358979 -1.5707963267949 0" />
+    <parent link="right_truck_Link" />
+    <child link="right_passive_sprocket_Link" />
+    <axis xyz="-1 0 0" />
+    <mimic joint="right_active_sprocket" multiplier="1" offset="0"/>
+  </joint>
+    <gazebo reference="right_passive_sprocket_Link">
+      <mu1 value="1.0"/>
+      <mu2 value="1.0"/>
+      <kp value="10000000.0" />
+      <kd value="1.0" />
+      <fdir1 value="1 0 0"/>
+    </gazebo>
+  </xacro:if>
+
+  <xacro:unless value="$(arg simulator_enabled)">
+  <link name="right_active_sprocket_Link">
+    <inertial>
+      <origin xyz="-0.0158952836887031 4.23317145863134E-05 -4.23300251638226E-05" rpy="0 0 0" />
+      <mass value="0.0181336752977609" />
+      <inertia
+        ixx="6.05561380020159E-06"
+        ixy="3.48910628500859E-09"
+        ixz="-3.48896538279447E-09"
+        iyy="4.02731224010261E-06"
+        iyz="4.09083232163718E-09"
+        izz="4.02731187030243E-06" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="${path_right_truck}/right_active_sprocket_Link.STL" />
+      </geometry>
+      <material name="Black" />
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="${path_right_truck}/right_active_sprocket_Link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="right_active_sprocket" type="continuous">
+    <origin xyz="0.164050888156922 0.0100000000000001 -0.00674999999999994" rpy="3.14159265358979 -1.5707963267949 0" />
+    <parent link="right_truck_Link" />
+    <child link="right_active_sprocket_Link" />
+    <axis xyz="-1 0 0" />
+  </joint>
+
+  <link name="right_passive_sprocket_Link">
+    <inertial>
+      <origin xyz="-0.0175869916443205 -1.38659330545243E-10 1.11022302462516E-16" rpy="0 0 0" />
+      <mass value="0.0194093358554489" />
+      <inertia
+        ixx="6.01846919689728E-06"
+        ixy="4.27932917061051E-16"
+        ixz="-6.6395785422905E-15"
+        iyy="4.21841152183218E-06"
+        iyz="3.34846143745666E-20"
+        izz="4.21841144546209E-06" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="${path_right_truck}/right_passive_sprocket_Link.STL" />
+      </geometry>
+      <material name="Black" />
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="${path_right_truck}/right_passive_sprocket_Link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="right_passive_sprocket" type="continuous">
+    <origin xyz="-0.0440508881569224 0.01 -0.00550399999999997" rpy="3.14159265358979 -1.5707963267949 0" />
+    <parent link="right_truck_Link" />
+    <child link="right_passive_sprocket_Link" />
+    <axis xyz="-1 0 0" />
+    <mimic joint="right_active_sprocket" multiplier="1" offset="0"/>
+  </joint>
+</xacro:unless>
+
+  <link name="right_struct_truck_Link">
+    <inertial>
+      <origin xyz="0.154820724963819 0.00991580662446955 0.0161740379559781" rpy="0 0 0" />
+      <mass value="0.0408113676925098" />
+      <inertia
+        ixx="9.68859873274035E-06"
+        ixy="2.45506852407149E-07"
+        ixz="1.33523316967875E-06"
+        iyy="2.0005910717261E-05"
+        iyz="5.43379570765238E-08"
+        izz="1.62856145600543E-05" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="${path_right_truck}/right_struct_truck_Link.STL" />
+      </geometry>
+      <material name="DarkGrey" />
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="${path_right_truck}/right_struct_truck_Link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="right_struct_truck" type="fixed">
+    <origin xyz="0 0 0" rpy="0 0 3.54047866265369E-52" />
+    <parent link="right_truck_Link" />
+    <child link="right_struct_truck_Link" />
+    <axis xyz="0 0 0" />
+  </joint>
+
+  <link name="right_truck_chain_Link">
+    <inertial>
+      <origin xyz="0.0599581424814717 0.0100160376422856 -0.0217756598165291" rpy="0 0 0" />
+      <mass value="0.192752655057026" />
+      <inertia
+        ixx="0.000176982204792363"
+        ixy="-3.42856090350053E-07"
+        ixz="-1.01222241534037E-10"
+        iyy="0.00135223931181398"
+        iyz="1.22680092835564E-08"
+        izz="0.0014478588703577" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="${path_right_truck}/right_truck_chain_Link.STL" />
+      </geometry>
+      <material name="Black" />
+    </visual>
+  </link>
+  <joint name="right_truck_chain" type="fixed">
+    <origin xyz="0 0 0" rpy="0 0 3.54047866265369E-52" />
+    <parent link="right_truck_Link" />
+    <child link="right_truck_chain_Link" />
+    <axis xyz="0 0 0" />
+  </joint>
+
+  </xacro:macro>
+
+</robot>

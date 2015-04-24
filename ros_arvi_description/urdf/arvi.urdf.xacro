@@ -1,0 +1,227 @@
+<?xml version="1.0"?>
+<robot name="arvi_robot" xmlns:xacro="http://ros.org/wiki/xacro">
+
+  <!-- Included URDF/XACRO Files -->
+  <xacro:include filename="$(find ros_arvi_description)/urdf/materials.urdf" />
+  <xacro:include filename="$(find ros_arvi_description)/urdf/left_truck.urdf.xacro" />
+  <xacro:include filename="$(find ros_arvi_description)/urdf/right_truck.urdf.xacro" />
+  <xacro:include filename="$(find ros_arvi_description)/urdf/plate.urdf.xacro" />
+  <xacro:include filename="$(find ros_arvi_description)/urdf/blades.urdf.xacro" />
+  <xacro:include filename="$(find ros_arvi_description)/urdf/tilt.urdf.xacro" />
+  <!-- Included URDF/XACRO Files -->
+
+  <!-- Global properties -->
+  <property name="M_PI" value="3.14159"/>
+  <!-- Global properties -->
+
+  <!-- base_link -->
+  <link name="base_link">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://ros_arvi_description/meshes/body/base_link.STL" />
+      </geometry>
+      <material name="Yellow" />
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://ros_arvi_description/meshes/body/base_link.STL" />
+      </geometry>
+    </collision>
+    <inertial>
+      <origin xyz="0.130185479237539 -0.000536468673004763 0.0304532680621858" rpy="0 0 0" />
+      <mass value="0.272200633813776" />
+      <inertia
+        ixx="0.000617095886476085"
+        ixy="-5.12672527088341E-06"
+        ixz="1.20210958966622E-05"
+        iyy="0.0014002462029791"
+        iyz="-1.5157052536873E-06"
+        izz="0.00191138386346644" />
+    </inertial>
+  </link>
+
+  <!-- base_link -->
+  <link name="body_part_Link">
+    <inertial>
+      <origin xyz="0.133570819651088 -4.14003794269398E-08 0.0204255892535912" rpy="0 0 0" />
+      <mass value="0.108147121286761" />
+      <inertia
+        ixx="0.000304606315406341"
+        ixy="1.25076186736132E-07"
+        ixz="-1.53741527252821E-05"
+        iyy="0.000402887514519303"
+        iyz="2.2690650936707E-11"
+        izz="0.000689103355090742" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://ros_arvi_description/meshes/body/body_part_Link.STL" />
+      </geometry>
+      <material name="DarkGrey" />
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://ros_arvi_description/meshes/body/body_part_Link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="body_part" type="fixed">
+    <origin xyz="0 0 0" rpy="0 0 0" />
+    <parent link="base_link" />
+    <child link="body_part_Link" />
+    <axis xyz="0 0 0" />
+  </joint>
+
+  <link name="electronics_body_Link">
+    <inertial>
+      <origin xyz="0.0840208370386384 -0.00886251642913569 0.0452983789827503" rpy="0 0 0" />
+      <mass value="0.0616460691706747" />
+      <inertia
+        ixx="9.89251237759444E-05"
+        ixy="1.47762010476443E-05"
+        ixz="-2.25521908548839E-06"
+        iyy="0.000121904976471665"
+        iyz="-1.10775268291343E-05"
+        izz="0.000206121376994782" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://ros_arvi_description/meshes/body/electronics_body_Link.STL" />
+      </geometry>
+      <material name="Green" />
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://ros_arvi_description/meshes/body/electronics_body_Link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="electronics_body" type="fixed">
+    <origin xyz="0 0 0" rpy="0 0 0" />
+    <parent link="base_link" />
+    <child link="electronics_body_Link" />
+    <axis xyz="0 0 0" />
+  </joint>
+
+  <link name="black_body_Link">
+    <inertial>
+      <origin xyz="0.160135474802456 0.0301420686574615 0.0392052226527227" rpy="0 0 0" />
+      <mass value="0.042061763424303" />
+      <inertia
+        ixx="5.33504824782462E-05"
+        ixy="-2.50288164529289E-06"
+        ixz="-1.09973782192118E-06"
+        iyy="0.000164353193538514"
+        iyz="-6.43178732844938E-06"
+        izz="0.000208108161058863" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://ros_arvi_description/meshes/body/black_body_Link.STL" />
+      </geometry>
+      <material name="Black" />
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://ros_arvi_description/meshes/body/black_body_Link.STL" />
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="black_body" type="fixed">
+    <origin xyz="0 0 0" rpy="0 0 0" />
+    <parent link="base_link" />
+    <child link="black_body_Link" />
+    <axis xyz="0 0 0" />
+  </joint>
+
+  <link name="cover_Link">
+    <inertial>
+      <origin xyz="0.133050887870322 6.72219463844978E-12 0.0667962041433763" rpy="0 0 0" />
+      <mass value="0.0583925275034925" />
+      <inertia
+        ixx="5.85521361915382E-05"
+        ixy="3.00016747905701E-14"
+        ixz="1.16017658321947E-16"
+        iyy="0.00020512907622642"
+        iyz="9.67617951968632E-16"
+        izz="0.000263642294982748" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://ros_arvi_description/meshes/body/cover_Link.STL" />
+      </geometry>
+      <material name="">
+        <color  rgba="1 1 1 0.5" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://ros_arvi_description/meshes/body/cover_Link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="cover" type="fixed">
+    <origin xyz="0 0 0" rpy="0 0 0" />
+    <parent link="base_link" />
+    <child link="cover_Link" />
+    <axis xyz="0 0 0" />
+  </joint>
+  <!-- Body chassis -->
+
+  <!-- Cameras -->
+  <xacro:tilt parent="base_link"/>
+  <link name="base_camera_Link">
+    <inertial>
+      <origin xyz="0.00604957980829977 0.000224875395270885 -9.36190983078303E-05" rpy="0 0 0" />
+      <mass value="0.00251479191505215" />
+      <inertia
+        ixx="1.43290319601572E-07"
+        ixy="-2.34310609078845E-09"
+        ixz="-8.71199367424439E-10"
+        iyy="1.08234233482371E-07"
+        iyz="-2.06594997558857E-09"
+        izz="1.05561302257343E-07" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://ros_arvi_description/meshes/body/base_camera_Link.STL" />
+      </geometry>
+      <material name="Black" />
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://ros_arvi_description/meshes/body/base_camera_Link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="base_camera" type="fixed">
+    <origin xyz="0.0270508881569224 -0.025 0.051" rpy="1.5707963267949 0 0" />
+    <parent link="base_link" />
+    <child link="base_camera_Link" />
+    <axis xyz="0 0 0" />
+  </joint>
+
+  <!-- Plate -->  
+  <xacro:plate parent="base_link"/>
+  <xacro:blades parent="base_link"/>
+  <!-- Plate -->
+
+  <!-- Trucks -->
+  <xacro:left_truck parent="base_link"/>
+  <xacro:right_truck parent="base_link"/>
+  <!-- Trucks -->  
+
+</robot>
