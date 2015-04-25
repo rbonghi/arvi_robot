@@ -14,6 +14,15 @@
   <property name="M_PI" value="3.14159"/>
   <!-- Global properties -->
 
+  <!-- Wheels params -->
+  <property name="wheel_radius" value="0.035"/>
+  <property name="wheel_leght" value="0.03"/>
+  <property name="wheel_offset" value="0.023"/>
+  <property name="truck_offset_x" value="0.163"/>
+  <property name="truck_offset_y" value="0.0827"/>
+  <property name="truck_offset_z" value="0.024"/>
+  <!-- Wheels params -->
+
   <!-- base_link -->
   <link name="base_link">
     <visual>
@@ -220,8 +229,12 @@
   <!-- Plate -->
 
   <!-- Trucks -->
-  <xacro:left_truck parent="base_link"/>
-  <xacro:right_truck parent="base_link"/>
+  <xacro:left_truck parent="base_link" reflect="-1" wheel_off="${wheel_offset}">
+    <origin xyz="${truck_offset_x} ${truck_offset_y} ${truck_offset_z}" rpy="${M_PI/2} 0 ${M_PI}" />
+  </xacro:left_truck>
+  <xacro:right_truck parent="base_link" reflect="1" wheel_off="${-wheel_offset}">
+    <origin xyz="${truck_offset_x} ${-truck_offset_y} ${truck_offset_z}" rpy="${M_PI/2} 0 ${M_PI}" />
+  </xacro:right_truck>
   <!-- Trucks -->  
 
 </robot>

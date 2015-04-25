@@ -2,9 +2,8 @@
 <robot xmlns:xacro="http://ros.org/wiki/xacro" name="left_truck">	
   
   <xacro:property name="path_left_truck" value="package://ros_arvi_description/meshes/left_truck" />
-  <xacro:property name="radius_wheel" value="0.035" />
 
-  <xacro:macro name="left_truck" params="parent">
+  <xacro:macro name="left_truck" params="parent reflect wheel_off *joint_pose">
   <link
     name="left_truck_Link">
     <inertial>
@@ -34,7 +33,7 @@
   </link>
 <xacro:if value="$(arg truck_fixed)">
   <joint name="left_truck" type="fixed">
-    <origin xyz="0.163050888156922 0.0827 0.02425" rpy="1.5707963267949 0 3.14159265358979" />
+    <xacro:insert_block name="joint_pose"/>
     <parent link="base_link" />
     <child link="left_truck_Link" />
     <axis xyz="-1 0 0" />
@@ -42,7 +41,7 @@
 </xacro:if>
 <xacro:unless value="$(arg truck_fixed)">
   <joint name="left_truck" type="revolute">
-    <origin xyz="0.163050888156922 0.0827 0.02425" rpy="1.5707963267949 0 3.14159265358979" />
+    <xacro:insert_block name="joint_pose"/>
     <parent link="base_link" />
     <child link="left_truck_Link" />
     <axis xyz="-1 0 0" />
@@ -55,14 +54,14 @@
       <visual>
         <origin xyz="0 0 0" rpy="0 ${M_PI/2} 0" />
         <geometry>
-          <cylinder length="0.03" radius="${radius_wheel}"/>
+          <cylinder length="${wheel_leght}" radius="${wheel_radius}"/>
         </geometry>
         <material name="Black" />
       </visual>
       <collision>
         <origin xyz="0 0 0" rpy="0 ${M_PI/2} 0" />
         <geometry>
-            <cylinder length="0.03" radius="${radius_wheel}"/>
+          <cylinder length="${wheel_leght}" radius="${wheel_radius}"/>
         </geometry>
       </collision>
       <inertial>
@@ -78,10 +77,10 @@
       </inertial>
     </link>
     <joint name="left_active_sprocket" type="continuous">
-      <origin xyz="0.163050888156922 0.00999999999999986 ${0.00674999999999998+0.015}" rpy="0 1.5707963267949 0" />
+      <origin xyz="0.163050888156922 0.00999999999999986 ${wheel_off}" rpy="0 ${M_PI/2} 0" />
       <parent link="left_truck_Link" />
       <child link="left_active_sprocket_Link" />
-      <axis xyz="-1 0 0" />
+      <axis xyz="${reflect} 0 0" />
     </joint>
     <gazebo reference="left_active_sprocket_Link">
       <mu1 value="1.0"/>
@@ -93,7 +92,7 @@
 
   <link name="left_passive_sprocket_Link">
     <inertial>
-      <origin xyz="-0.017586991668159 -1.20643425804978E-11 4.12712086728106E-11" rpy="0 0 0" />
+      <origin xyz="-0.017586991668159 0 0" rpy="0 0 0" />
       <mass value="0.0194093359138542" />
       <inertia
         ixx="6.01846921866933E-06"
@@ -106,22 +105,22 @@
       <visual>
         <origin xyz="0 0 0" rpy="0 ${M_PI/2} 0" />
         <geometry>
-          <cylinder length="0.03" radius="${radius_wheel}"/>
+          <cylinder length="${wheel_leght}" radius="${wheel_radius}"/>
         </geometry>
         <material name="Black" />
       </visual>
       <collision>
         <origin xyz="0 0 0" rpy="0 ${M_PI/2} 0" />
         <geometry>
-            <cylinder length="0.03" radius="${radius_wheel}"/>
+            <cylinder length="${wheel_leght}" radius="${wheel_radius}"/>
         </geometry>
       </collision>
   </link>
   <joint name="left_passive_sprocket" type="continuous">
-    <origin xyz="-0.0450508881569225 0.00999999999999997 ${0.00550399999999998+0.015}" rpy="0 1.5707963267949 0" />
+    <origin xyz="-0.0450508881569225 0.00999999999999997 ${wheel_off}" rpy="0 ${M_PI/2} 0" />
     <parent link="left_truck_Link" />
     <child link="left_passive_sprocket_Link" />
-    <axis xyz="-1 0 0" />
+    <axis xyz="${reflect} 0 0" />
     <mimic joint="left_active_sprocket" multiplier="1" offset="0"/>
   </joint>
     <gazebo reference="left_passive_sprocket_Link">
@@ -144,15 +143,15 @@
     </visual>
   </link>
   <joint name="left_active_sprocket" type="continuous">
-    <origin xyz="0.163050888156922 0.00999999999999986 0.00674999999999998" rpy="0 1.5707963267949 0" />
+    <origin xyz="0.163050888156922 0.00999999999999986 0.00674999999999998" rpy="0 ${M_PI/2} 0" />
     <parent link="left_truck_Link" />
     <child link="left_active_sprocket_Link" />
-    <axis xyz="-1 0 0" />
+    <axis xyz="${reflect} 0 0" />
   </joint>
 
   <link name="left_passive_sprocket_Link">
     <inertial>
-      <origin xyz="-0.017586991668159 -1.20643425804978E-11 4.12712086728106E-11" rpy="0 0 0" />
+      <origin xyz="-0.017586991668159 0 0" rpy="0 0 0" />
       <mass value="0.0194093359138542" />
       <inertia
         ixx="6.01846921866933E-06"
@@ -180,7 +179,7 @@
     <origin xyz="-0.0450508881569225 0.00999999999999997 0.00550399999999998" rpy="0 1.5707963267949 0" />
     <parent link="left_truck_Link" />
     <child link="left_passive_sprocket_Link" />
-    <axis xyz="-1 0 0" />
+    <axis xyz="${reflect} 0 0" />
     <mimic joint="left_active_sprocket" multiplier="1" offset="0"/>
   </joint>
 </xacro:unless>
