@@ -184,6 +184,27 @@
   </joint>
 </xacro:unless>
 
+		<transmission name="left_active_sprocket_trans" type="SimpleTransmission">
+			<type>transmission_interface/SimpleTransmission</type>
+			<actuator name="left_active_sprocket_motor">
+				<hardwareInterface>EffortJointInterface</hardwareInterface>
+				<mechanicalReduction>1</mechanicalReduction>
+			</actuator>
+			<joint name="left_active_sprocket">
+				<hardwareInterface>EffortJointInterface</hardwareInterface>
+			</joint>
+		</transmission>
+		<transmission name="left_passive_sprocket_trans" type="SimpleTransmission">
+			<type>transmission_interface/SimpleTransmission</type>
+			<actuator name="left_passive_sprocket_motor">
+				<hardwareInterface>EffortJointInterface</hardwareInterface>
+				<mechanicalReduction>1</mechanicalReduction>
+			</actuator>
+			<joint name="left_passive_sprocket">
+				<hardwareInterface>EffortJointInterface</hardwareInterface>
+			</joint>
+		</transmission>
+
   <link name="left_struct_truck_Link">
     <inertial>
       <origin xyz="0.153884417320019 0.0099558285040331 -0.0161740379559781" rpy="0 0 0" />
