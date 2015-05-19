@@ -3,7 +3,7 @@
   
   <xacro:property name="path_tilt" value="package://arvi_description/meshes/tilt" />
 
-  <xacro:macro name="tilt" params="parent">
+  <xacro:macro name="tilt" params="parent type">
   <link
     name="tilt_Link">
     <inertial>
@@ -44,7 +44,7 @@
       </geometry>
     </collision>
   </link>
-  <joint name="tilt" type="revolute">
+  <joint name="tilt" type="${type}">
     <origin xyz="0.227255888156922 0.016275 0.02745" rpy="1.5707963267949 3.80168975285532E-18 1.5707963267949" />
     <parent link="base_link" />
     <child link="tilt_Link" />

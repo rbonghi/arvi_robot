@@ -23,6 +23,15 @@
   <property name="truck_offset_z" value="0.024"/>
   <!-- Wheels params -->
 
+  <!-- front camera params -->
+  <xacro:if value="$(arg truck_fixed)">
+    <property name="camera_axis" value="fixed"/>
+  </xacro:if>
+  <xacro:unless value="$(arg truck_fixed)">
+    <property name="camera_axis" value="revolute"/>
+  </xacro:unless>
+  <!-- front camera params -->
+
   <!-- base_link -->
   <link name="base_link">
     <visual>
@@ -189,7 +198,7 @@
   <!-- Body chassis -->
 
   <!-- Cameras -->
-  <xacro:tilt parent="base_link"/>
+  <xacro:tilt parent="base_link" type="${camera_axis}"/>
   <link name="base_camera_Link">
     <inertial>
       <origin xyz="0.00604957980829977 0.000224875395270885 -9.36190983078303E-05" rpy="0 0 0" />
