@@ -11,8 +11,8 @@
   <license>BSD</license>
 
   <!--<url type="website"></url>-->
-  <url type="bugtracker">https://github.com/rbonghi/ros_dude/issues</url>
-  <url type="repository">https://github.com/rbonghi/ros_dude</url>
+  <url type="bugtracker">https://github.com/rbonghi/arvi_robot/issues</url>
+  <url type="repository">https://github.com/rbonghi/arvi_robot</url>
 
   <buildtool_depend>catkin</buildtool_depend>
   <build_depend>roslaunch</build_depend>
