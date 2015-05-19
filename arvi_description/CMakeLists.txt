@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 2.8.3)
-project(ros_arvi_description)
+project(arvi_description)
 
 set(ROS_BUILD_TYPE Debug)
 set(CMAKE_BUILD_TYPE Debug)

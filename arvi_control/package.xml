@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <package>
-  <name>ros_arvi_control</name>
+  <name>arvi_control</name>
   <version>0.0.1</version>
   <description>The arvi_robot package</description>
 
@@ -22,7 +22,7 @@
 
 
   <buildtool_depend>catkin</buildtool_depend>
-  <run_depend>ros_arvi_description</run_depend>
+  <run_depend>arvi_description</run_depend>
   <build_depend>tf</build_depend>
   <run_depend>tf</run_depend>
 

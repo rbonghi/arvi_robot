@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <package>
-  <name>ros_arvi_description</name>
+  <name>arvi_description</name>
   <version>0.0.1</version>
   <description>
 	This is the configuration package for the robot ARVI.
