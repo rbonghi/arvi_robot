@@ -23,13 +23,13 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
 <launch>
 
   <!-- Run the map server -->
-  <arg name="map_file" default="$(find dude_navigation)/maps/home.yaml"/>
+  <arg name="map_file" default="$(find arvi_navigation)/maps/room.yaml"/>
   <node name="map_server" pkg="map_server" type="map_server" args="$(arg map_file)" />
 
   <!--- Run AMCL -->
-  <include file="$(find dude_navigation)/launch/amcl.launch" />
+  <include file="$(find arvi_navigation)/launch/amcl.launch" />
 
   <!--- Run Move Base -->
-  <include file="$(find dude_navigation)/launch/move_base.launch" />
+  <include file="$(find arvi_navigation)/launch/move_base.launch" />
 
 </launch>
