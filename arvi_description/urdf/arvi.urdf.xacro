@@ -2,12 +2,12 @@
 <robot name="arvi_robot" xmlns:xacro="http://ros.org/wiki/xacro">
 
   <!-- Included URDF/XACRO Files -->
-  <xacro:include filename="$(find ros_arvi_description)/urdf/materials.urdf" />
-  <xacro:include filename="$(find ros_arvi_description)/urdf/left_truck.urdf.xacro" />
-  <xacro:include filename="$(find ros_arvi_description)/urdf/right_truck.urdf.xacro" />
-  <xacro:include filename="$(find ros_arvi_description)/urdf/plate.urdf.xacro" />
-  <xacro:include filename="$(find ros_arvi_description)/urdf/blades.urdf.xacro" />
-  <xacro:include filename="$(find ros_arvi_description)/urdf/tilt.urdf.xacro" />
+  <xacro:include filename="$(find arvi_description)/urdf/materials.urdf" />
+  <xacro:include filename="$(find arvi_description)/urdf/left_truck.urdf.xacro" />
+  <xacro:include filename="$(find arvi_description)/urdf/right_truck.urdf.xacro" />
+  <xacro:include filename="$(find arvi_description)/urdf/plate.urdf.xacro" />
+  <xacro:include filename="$(find arvi_description)/urdf/blades.urdf.xacro" />
+  <xacro:include filename="$(find arvi_description)/urdf/tilt.urdf.xacro" />
   <!-- Included URDF/XACRO Files -->
 
   <!-- Global properties -->
@@ -28,14 +28,14 @@
     <visual>
       <origin xyz="0 0 0" rpy="0 0 0" />
       <geometry>
-        <mesh filename="package://ros_arvi_description/meshes/body/base_link.STL" />
+        <mesh filename="package://arvi_description/meshes/body/base_link.STL" />
       </geometry>
       <material name="Yellow" />
     </visual>
     <collision>
       <origin xyz="0 0 0" rpy="0 0 0" />
       <geometry>
-        <mesh filename="package://ros_arvi_description/meshes/body/base_link.STL" />
+        <mesh filename="package://arvi_description/meshes/body/base_link.STL" />
       </geometry>
     </collision>
     <inertial>
@@ -67,14 +67,14 @@
     <visual>
       <origin xyz="0 0 0" rpy="0 0 0" />
       <geometry>
-        <mesh filename="package://ros_arvi_description/meshes/body/body_part_Link.STL" />
+        <mesh filename="package://arvi_description/meshes/body/body_part_Link.STL" />
       </geometry>
       <material name="DarkGrey" />
     </visual>
     <collision>
       <origin xyz="0 0 0" rpy="0 0 0" />
       <geometry>
-        <mesh filename="package://ros_arvi_description/meshes/body/body_part_Link.STL" />
+        <mesh filename="package://arvi_description/meshes/body/body_part_Link.STL" />
       </geometry>
     </collision>
   </link>
@@ -100,14 +100,14 @@
     <visual>
       <origin xyz="0 0 0" rpy="0 0 0" />
       <geometry>
-        <mesh filename="package://ros_arvi_description/meshes/body/electronics_body_Link.STL" />
+        <mesh filename="package://arvi_description/meshes/body/electronics_body_Link.STL" />
       </geometry>
       <material name="Green" />
     </visual>
     <collision>
       <origin xyz="0 0 0" rpy="0 0 0" />
       <geometry>
-        <mesh filename="package://ros_arvi_description/meshes/body/electronics_body_Link.STL" />
+        <mesh filename="package://arvi_description/meshes/body/electronics_body_Link.STL" />
       </geometry>
     </collision>
   </link>
@@ -133,14 +133,14 @@
     <visual>
       <origin xyz="0 0 0" rpy="0 0 0" />
       <geometry>
-        <mesh filename="package://ros_arvi_description/meshes/body/black_body_Link.STL" />
+        <mesh filename="package://arvi_description/meshes/body/black_body_Link.STL" />
       </geometry>
       <material name="Black" />
     </visual>
     <collision>
       <origin xyz="0 0 0" rpy="0 0 0" />
       <geometry>
-        <mesh filename="package://ros_arvi_description/meshes/body/black_body_Link.STL" />
+        <mesh filename="package://arvi_description/meshes/body/black_body_Link.STL" />
       </geometry>
     </collision>
   </link>
@@ -167,7 +167,7 @@
     <visual>
       <origin xyz="0 0 0" rpy="0 0 0" />
       <geometry>
-        <mesh filename="package://ros_arvi_description/meshes/body/cover_Link.STL" />
+        <mesh filename="package://arvi_description/meshes/body/cover_Link.STL" />
       </geometry>
       <material name="">
         <color  rgba="1 1 1 0.5" />
@@ -176,7 +176,7 @@
     <collision>
       <origin xyz="0 0 0" rpy="0 0 0" />
       <geometry>
-        <mesh filename="package://ros_arvi_description/meshes/body/cover_Link.STL" />
+        <mesh filename="package://arvi_description/meshes/body/cover_Link.STL" />
       </geometry>
     </collision>
   </link>
@@ -205,14 +205,14 @@
     <visual>
       <origin xyz="0 0 0" rpy="0 0 0" />
       <geometry>
-        <mesh filename="package://ros_arvi_description/meshes/body/base_camera_Link.STL" />
+        <mesh filename="package://arvi_description/meshes/body/base_camera_Link.STL" />
       </geometry>
       <material name="Black" />
     </visual>
     <collision>
       <origin xyz="0 0 0" rpy="0 0 0" />
       <geometry>
-        <mesh filename="package://ros_arvi_description/meshes/body/base_camera_Link.STL" />
+        <mesh filename="package://arvi_description/meshes/body/base_camera_Link.STL" />
       </geometry>
     </collision>
   </link>

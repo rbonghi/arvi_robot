@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://ros.org/wiki/xacro" name="plate">	
   
-  <xacro:property name="path_plate" value="package://ros_arvi_description/meshes/plate" />
+  <xacro:property name="path_plate" value="package://arvi_description/meshes/plate" />
 
   <xacro:macro name="plate" params="parent">
   <link

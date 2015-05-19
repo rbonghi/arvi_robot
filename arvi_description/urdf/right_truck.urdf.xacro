@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://ros.org/wiki/xacro" name="right_truck">	
   
-  <xacro:property name="path_right_truck" value="package://ros_arvi_description/meshes/right_truck" />
+  <xacro:property name="path_right_truck" value="package://arvi_description/meshes/right_truck" />
 
   <xacro:macro name="right_truck" params="parent reflect wheel_off *joint_pose">
 

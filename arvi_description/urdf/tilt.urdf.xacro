@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://ros.org/wiki/xacro" name="tilt">	
   
-  <xacro:property name="path_tilt" value="package://ros_arvi_description/meshes/tilt" />
+  <xacro:property name="path_tilt" value="package://arvi_description/meshes/tilt" />
 
   <xacro:macro name="tilt" params="parent">
   <link

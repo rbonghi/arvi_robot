@@ -7,14 +7,14 @@
       <visual>
         <origin xyz="0 0 0" rpy="0 0 0" />
           <geometry>
-            <mesh filename="package://ros_arvi_description/meshes/truck/${position}_truck_link.STL" />
+            <mesh filename="package://arvi_description/meshes/truck/${position}_truck_link.STL" />
           </geometry>
           <material name="Yellow" />
       </visual>
       <collision>
         <origin xyz="0 0 0" rpy="0 0 0" />
         <geometry>
-          <mesh filename="package://ros_arvi_description/meshes/truck/${position}_truck_link.STL" />
+          <mesh filename="package://arvi_description/meshes/truck/${position}_truck_link.STL" />
         </geometry>
       </collision>
     <inertial>
@@ -64,14 +64,14 @@
     <visual>
       <origin xyz="0 0 0" rpy="0 0 0" />
       <geometry>
-        <mesh filename="package://ros_arvi_description/meshes/truck/${position}_sprocket_link.STL" />
+        <mesh filename="package://arvi_description/meshes/truck/${position}_sprocket_link.STL" />
       </geometry>
       <material name="Black" />
     </visual>
     <collision>
       <origin xyz="0 0 0" rpy="0 0 0" />
       <geometry>
-        <mesh filename="package://ros_arvi_description/meshes/truck/${position}_sprocket_link.STL" />
+        <mesh filename="package://arvi_description/meshes/truck/${position}_sprocket_link.STL" />
       </geometry>
     </collision>
   </link>
@@ -97,14 +97,14 @@
     <visual>
       <origin xyz="0 0 0" rpy="0 0 0" />
       <geometry>
-        <mesh filename="package://ros_arvi_description/meshes/truck/${position}_struct_truck_link.STL" />
+        <mesh filename="package://arvi_description/meshes/truck/${position}_struct_truck_link.STL" />
       </geometry>
       <material name="DarkGrey" />
     </visual>
     <collision>
       <origin xyz="0 0 0" rpy="0 0 0" />
       <geometry>
-        <mesh filename="package://ros_arvi_description/meshes/truck/${position}_struct_truck_link.STL" />
+        <mesh filename="package://arvi_description/meshes/truck/${position}_struct_truck_link.STL" />
       </geometry>
     </collision>
   </link>
@@ -129,14 +129,14 @@
     <visual>
       <origin xyz="0 0 0" rpy="0 0 0" />
       <geometry>
-        <mesh filename="package://ros_arvi_description/meshes/truck/${position}_truck_chain_link.STL" />
+        <mesh filename="package://arvi_description/meshes/truck/${position}_truck_chain_link.STL" />
       </geometry>
       <material name="Black" />
     </visual>
     <collision>
       <origin xyz="0 0 0" rpy="0 0 0" />
       <geometry>
-        <mesh filename="package://ros_arvi_description/meshes/truck/${position}_truck_chain_link.STL" />
+        <mesh filename="package://arvi_description/meshes/truck/${position}_truck_chain_link.STL" />
       </geometry>
     </collision>
   </link>

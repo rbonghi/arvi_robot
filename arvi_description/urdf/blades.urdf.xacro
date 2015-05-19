@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://ros.org/wiki/xacro" name="blades">	
   
-  <xacro:property name="path_blades" value="package://ros_arvi_description/meshes/blades" />
+  <xacro:property name="path_blades" value="package://arvi_description/meshes/blades" />
 
   <xacro:macro name="blades" params="parent">
   <link
